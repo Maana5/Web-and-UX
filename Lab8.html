@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Styled Form and Table</title>
+  <style>
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: gray;
+      margin: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: whitesmoke;
+      margin-bottom: 30px;
+    }
+
+    /* Form styling */
+    form {
+      background-color: #ffffff;
+      max-width: 400px;
+      margin: 0 auto 30px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: lightgreen;
+    }
+
+    /* Table styling */
+    table {
+      width: 70%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background-color: white;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: burlywood;
+      color: white;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f2f2f2;
+    }
+
+    /* Footer styling */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Information Form</h2>
+
+  <!-- Form -->
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Table -->
+  <table>
+    <tr>
+      <th><Sr class="no"></Sr></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>phone no:</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ABCD</td>
+      <td>abcd@example.com</td>
+      <td>1010101010</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>EFGH </td>
+      <td>efgh@example.com</td>
+      <td>0101010101</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>xyz</td>
+      <td>xyz@example.com</td>
+      <td>1111100000</td>
+    </tr>
+  </table>
+</body>
+</html>
+
