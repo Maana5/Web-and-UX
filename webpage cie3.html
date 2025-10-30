@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #222;
+      --card-bg: #fff;
+      --accent: #0077ff;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --card-bg: #1e1e1e;
+      --accent: #00c8ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--card-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      background: var(--accent);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background: #005fcc;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .intro img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid var(--accent);
+    }
+
+    h2 {
+      margin: 20px 0 10px;
+      color: var(--accent);
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--card-bg);
+      color: var(--text-color);
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <center><h1>My Portfolio</h1></center>
+    <button class="toggle-btn" id="themeToggle"> Dark Mode</button>
+  </header>
+
+  <section class="intro">
+   <center> <img src="https://tse1.explicit.bing.net/th/id/OIP.AbGafkazjc_S1pZPh0B9cQHaIm?rs=1&pid=ImgDetMain&o=7&rm=3"</center> 
+    <h2>Hello, I'm Maanas </h2>
+    <p>
+      I'm a web developer passionate about creating modern, interactive, and user-friendly websites.
+      I love working with HTML, CSS, and JavaScript to bring ideas to life.
+    </p>
+  </section>
+  <center><h2>Education Qualification:</h2></center>
+ <center> <table border="6" cellspacing="10" cellpadding="100">
+        <tr>
+            <th>si.no</th>
+            <th>institution</th>
+            <th>percentage</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>narayana</td>
+            <td>74%</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>chaitanya</td>
+            <td>85%</td>
+        </tr>
+    </table></center>
+
+  <section>
+    <h2>My Projects:</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3> Game Store Website</h3>
+        <p>A responsive e-commerce layout to showcase and sell games online.</p>
+      </div>
+      <div class="project-card">
+        <h3> Calculator App</h3>
+        <p>A clean and functional calculator using JavaScript and CSS grid.</p>
+      </div>
+      <div class="project-card">
+        <h3> Study Planner</h3>
+        <p>An interactive timetable to organize study sessions efficiently.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Maanas | Designed using HTML, CSS & JS
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const body = document.body;
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      if (body.classList.contains("dark")) {
+        toggleBtn.textContent = " Light Mode";
+      } else {
+        toggleBtn.textContent = " Dark Mode";
+      }
+    });
+  </script>
+</body>
+</html>
