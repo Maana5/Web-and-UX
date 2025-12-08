@@ -239,7 +239,7 @@
 
 <!-- ====== PS5 (10 games) ====== -->
 <section id="ps5">
-  <div class="section-title fade-in"><h3>PS5 — Top Picks</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="section-title fade-in"><h3>PS5 — Top Picks</h3><div style="margin-left:auto;color:var(--muted)"></div></div>
   <div class="grid" id="ps5-grid">
     <!-- Cards: id, data-price, data-title, data-platform -->
     <article class="card fade-in" data-id="ps5-1" data-title="Marvel's Spider-Man 2" data-price="4999" data-platform="PS5">
@@ -322,7 +322,7 @@
 
 <!-- ====== XBOX (10 games) ====== -->
 <section id="xbox">
-  <div class="section-title fade-in"><h3>Xbox — Top Picks</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="section-title fade-in"><h3>Xbox — Top Picks</h3><div style="margin-left:auto;color:var(--muted)"></div></div>
   <div class="grid" id="xbox-grid">
     <article class="card fade-in" data-id="xbox-1" data-title="Forza Horizon 5" data-price="3499" data-platform="Xbox">
       <img class="thumb" src="https://th.bing.com/th/id/OIP.l45j8TWFWPpd4OMrwAs1AgHaLH?w=121&h=182&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Forza Horizon 5">
@@ -339,6 +339,12 @@
     <article class="card fade-in" data-id="xbox-4" data-title="Forza Motorsport" data-price="2999" data-platform="Xbox">
       <img class="thumb" src="https://www.bing.com/th/id/OIP.uImJzHh1vvLwEA2NpubJxQHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Forza Motorsport">
       <div class="card-body"><div class="title">Forza Motorsport</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹2,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+    
+    <article class="card fade-in" data-id="ps4-7" data-title="Days Gone" data-price="999" data-platform="PS4">
+      <img class="thumb" src="https://th.bing.com/th/id/OIP.hKo0VavQyYN4VOqm_6qRKgHaEP?w=233&h=150&c=6&o=7&dpr=1.3&pid=1.7&rm=3" alt="Days Gone">
+      <div class="card-body"><div class="title">Days Gone</div><div class="meta"><div class="tag">PS4</div><div class="price">₹999</div></div>
         <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
     </article>
 
@@ -370,7 +376,7 @@
 
 <!-- ====== PS4 (10 games) ====== -->
 <section id="ps4">
-  <div class="section-title fade-in"><h3>PS4 — Classics</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="section-title fade-in"><h3>PS4 — Classics</h3><div style="margin-left:auto;color:var(--muted)"></div></div>
   <div class="grid" id="ps4-grid">
     <article class="card fade-in" data-id="ps4-1" data-title="The Last of Us Part II" data-price="2499" data-platform="PS4">
       <img class="thumb" src="https://www.bing.com/th/id/OIP.cOfhxi3t6dCdx2VSXIH6fQHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="TLOU2">
@@ -424,7 +430,7 @@
 
 <!-- ====== NINTENDO SWITCH (10 games) ====== -->
 <section id="switch">
-  <div class="section-title fade-in"><h3>Nintendo Switch — Favorites</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="section-title fade-in"><h3>Nintendo Switch — Favorites</h3><div style="margin-left:auto;color:var(--muted)"></div></div>
   <div class="grid" id="switch-grid">
     <article class="card fade-in" data-id="sw-1" data-title="The Legend of Zelda: Breath of the Wild" data-price="3999" data-platform="Switch">
       <img class="thumb" src="https://www.bing.com/th/id/OIP.CRt7A-hTJZ_1MXNJGVwDXAHaHa?w=176&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Zelda BotW">
@@ -478,7 +484,7 @@
 
 <!-- ====== PC (10 games) ====== -->
 <section id="pc">
-  <div class="section-title fade-in"><h3>PC — Top Digital Titles</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="section-title fade-in"><h3>PC — Top Digital Titles</h3><div style="margin-left:auto;color:var(--muted)"></div></div>
   <div class="grid" id="pc-grid">
     <article class="card fade-in" data-id="pc-1" data-title="Cyberpunk 2077" data-price="1999" data-platform="PC">
       <img class="thumb" src="https://www.bing.com/th/id/OIP.KUD3FJRyhQDeR_ZC6exy_AHaEK?w=229&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Cyberpunk">
@@ -540,7 +546,7 @@
       <div class="form-row">
         <div class="field">
           <label for="name">Your name</label>
-          <input id="name" type="text" placeholder="John Doe" required>
+          <input id="name" type="text" placeholder="Name" required>
         </div>
         <div class="field">
           <label for="email">Email</label>
