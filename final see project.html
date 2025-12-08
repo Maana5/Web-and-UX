@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Console Gaming Hub — Digital Games (India)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080808;
+    --card:#121212;
+    --muted:#9aa3ad;
+    --accent:#00b4ff;
+    --glass: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.02);
+    --success: #2ecc71;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,var(--bg), #040404 60%);
+    color:#e6eef6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.4;
+  }
+
+  /* HEADER */
+  .topbar{
+    position:sticky;top:0;z-index:1200;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(180deg, rgba(10,10,10,0.6), rgba(10,10,10,0.35));
+    border-bottom:1px solid rgba(255,255,255,0.03);
+  }
+  .container{
+    max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;align-items:center;gap:12px;
+  }
+  .logo-placeholder{
+    width:48px;height:48px;border-radius:8px;background:linear-gradient(180deg,#0e0e0e,#151515);display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,0.03);
+    color:var(--muted);font-weight:700;
+  }
+  .brand h1{font-size:18px;margin:0;color:#fff;letter-spacing:0.2px}
+  nav.desktop{display:flex;gap:14px;align-items:center}
+  nav.desktop a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px}
+  nav.desktop a:hover{color:#fff;background:var(--glass);}
+
+  .actions{display:flex;align-items:center;gap:12px}
+  .search {
+    display:flex;align-items:center;background:var(--glass-2);padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);
+  }
+  .search input{background:transparent;border:0;color:#d8e6f8;outline:none;width:200px}
+  .cart-btn{
+    background:linear-gradient(90deg, rgba(0,180,255,0.08), rgba(0,180,255,0.02));
+    color:var(--accent);padding:8px 12px;border-radius:10px;border:1px solid rgba(0,180,255,0.12);
+    display:flex;align-items:center;gap:8px;cursor:pointer;
+  }
+  .cart-count{
+    background:var(--accent);color:#001;min-width:22px;height:22px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;padding:0 6px;
+  }
+
+  /* HERO */
+  .hero{
+    max-width:1200px;margin:28px auto 18px;padding:28px 20px;border-radius:14px;background:
+      linear-gradient(180deg, rgba(0,180,255,0.03), rgba(255,255,255,0.01));
+    display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center;
+  }
+  .hero-left h2{margin:0 0 10px;font-size:28px;color:#fff}
+  .hero-left p{color:var(--muted);margin-bottom:12px}
+  .cta-row{display:flex;gap:12px;align-items:center}
+  .btn{background:var(--accent);color:#001;padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(0,180,255,0.12)}
+
+  .hero-right{
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+    padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+  }
+  .stat{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+  .stat strong{font-size:18px}
+  .stat small{color:var(--muted)}
+
+  /* sections */
+  section{max-width:1200px;margin:26px auto;padding:8px 20px}
+  .section-title{display:flex;align-items:center;gap:12px;margin:6px 0 18px}
+  .section-title h3{margin:0;color:var(--accent);font-size:18px}
+  .section-sub{color:var(--muted);font-size:14px}
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap:18px;
+  }
+
+  .card{
+    background:linear-gradient(180deg,var(--card), #0f0f0f);
+    border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+  .thumb{width:100%;height:140px;object-fit:cover;display:block}
+  .card-body{padding:12px;display:flex;flex-direction:column;gap:8px}
+  .title{font-weight:600;font-size:15px}
+  .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .price{color:var(--accent);font-weight:700}
+  .tag{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.02);padding:5px 8px;border-radius:999px}
+
+  .card-actions{display:flex;gap:8px;margin-top:6px}
+  .small-btn{flex:1;padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);background:transparent;color:var(--muted);cursor:pointer}
+  .small-btn.buy{background:var(--accent);color:#001;border:0;font-weight:700}
+
+  /* CART DRAWER */
+  .cart-drawer{
+    position:fixed;right:20px;top:86px;width:360px;max-width:92vw;height:70vh;background:linear-gradient(180deg,#0b0b0b,#070707);
+    border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 12px 40px rgba(0,0,0,0.7);overflow:auto;display:none;z-index:1400;
+  }
+  .cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .cart-items{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .cart-item{
+    display:flex;gap:10px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);
+  }
+  .cart-item img{width:56px;height:56px;object-fit:cover;border-radius:6px}
+  .cart-item .ci-body{flex:1}
+  .qty-controls{display:flex;align-items:center;gap:6px}
+  .qty-controls button{background:transparent;border:1px solid rgba(255,255,255,0.05);padding:6px;border-radius:6px;color:var(--muted);cursor:pointer}
+  .cart-summary{margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.02)}
+  .checkout{
+    display:flex;justify-content:space-between;align-items:center;margin-top:10px;
+  }
+
+  /* feedback */
+  .feedback{
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+    padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+  }
+  .form-row{display:flex;gap:12px;margin-bottom:12px}
+  .form-row .field{flex:1}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+  input[type="text"],input[type="email"],textarea,select{
+    width:100%;padding:10px;border-radius:8px;background:#0b0b0b;border:1px solid rgba(255,255,255,0.03);color:#dfefff;outline:none;
+  }
+  textarea{min-height:110px;resize:vertical}
+  .submit-row{display:flex;justify-content:flex-end;gap:12px}
+
+  /* FOOTER */
+  footer{padding:18px 20px;margin-top:26px;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted);text-align:center}
+
+  /* Responsive */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;gap:12px}
+    nav.desktop{display:none}
+    .container{padding:12px}
+  }
+  @media (max-width:560px){
+    .search input{display:none}
+    .card-body{padding:10px}
+    .thumb{height:120px}
+    .cart-drawer{right:10px;top:76px;width:92vw;height:66vh}
+  }
+
+  /* little animation */
+  .fade-in{opacity:0;transform:translateY(8px);transition:all .5s ease}
+  .fade-in.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="brand">
+      <div class="logo-placeholder" id="logoBox">
+        <!-- Replace with your logo image -->
+        <i>CGM</i>
+      </div>
+      <div>
+        <h1>Console Gaming Hub</h1>
+        <div style="font-size:12px;color:var(--muted)">Digital console games — India</div>
+      </div>
+    </div>
+
+    <nav class="desktop" aria-label="Main navigation">
+      <a href="#ps5">PS5</a>
+      <a href="#ps4">PS4</a>
+      <a href="#xbox">Xbox</a>
+      <a href="#switch">Nintendo</a>
+      <a href="#pc">PC</a>
+      <a href="#feedback">Contact</a>
+    </nav>
+
+    <div class="actions">
+      <div class="search" title="Search (demo)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <input placeholder="Search games (demo)"/>
+      </div>
+      <div class="cart-btn" id="cartToggler" aria-label="Toggle cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:block">
+          <path d="M6 6h15l-1.5 9h-12L6 6z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="10" cy="20" r="1" fill="currentColor"></circle>
+          <circle cx="18" cy="20" r="1" fill="currentColor"></circle>
+        </svg>
+        <div style="font-size:13px">Cart</div>
+        <div class="cart-count" id="cartCount">0</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h2>Buy digital console games — instant delivery in India</h2>
+    <p>PlayStation, Xbox, Nintendo Switch and PC digital codes. Authentic, secure, and priced for India.</p>
+    <div class="cta-row">
+      <button class="btn" onclick="scrollToSection('ps5')">Shop PS5</button>
+      <button class="btn ghost" onclick="scrollToSection('pc')">Browse all categories</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat"><div><small>Top Deal</small><div style="font-weight:700">God of War: Ragnarok — ₹3,999</div></div><div><small>🔥</small></div></div>
+    <div class="stat"><div><small>Fast Delivery</small><div style="font-weight:700">Instant code delivery</div></div><div><small>⚡</small></div></div>
+    <div class="stat"><div><small>Trusted</small><div style="font-weight:700">Secure checkout & support</div></div><div><small>🔒</small></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title fade-in"><h3>About Console Gaming Hub</h3></div>
+  <div class="section-sub" style="max-width:900px">
+    Console Gaming Hub is India-focused digital games store offering instant delivery of authentic game codes and downloads for PS5, PS4, Xbox, Nintendo Switch and PC. Prices are tailored for the Indian market. This demo includes 50 curated titles across all major platforms.
+  </div>
+</section>
+
+<!-- ====== PS5 (10 games) ====== -->
+<section id="ps5">
+  <div class="section-title fade-in"><h3>PS5 — Top Picks</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="grid" id="ps5-grid">
+    <!-- Cards: id, data-price, data-title, data-platform -->
+    <article class="card fade-in" data-id="ps5-1" data-title="Marvel's Spider-Man 2" data-price="4999" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.2ACxYgHiIYqf63qTkqlIeQHaEK?w=274&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Marvel's Spider-Man 2">
+      <div class="card-body">
+        <div class="title">Marvel's Spider-Man 2</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹4,999</div></div>
+        <div class="card-actions">
+          <button class="small-btn" onclick="quickView(this)">Details</button>
+          <button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-2" data-title="God of War Ragnarök" data-price="3999" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.f3Xw_S6ti_lJCroQEqnKvAHaHa?w=189&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2x`g" alt="God of War">
+      <div class="card-body">
+        <div class="title">God of War Ragnarök</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹3,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-3" data-title="Horizon Forbidden West" data-price="3499" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.sArZDbIoFa0b_E-QB0ZVDQHaHZ?w=164&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Horizon Forbidden West">
+      <div class="card-body">
+        <div class="title">Horizon Forbidden West</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹3,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-4" data-title="Demon's Souls" data-price="1999" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.qeiab8kkXbWnbExlgeI0LAHaHa?w=176&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Demon's Souls">
+      <div class="card-body">
+        <div class="title">Demon's Souls</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹1,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-5" data-title="Returnal" data-price="2499" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.UHZ_gLEsuBtKaorjECVnggHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Returnal">
+      <div class="card-body">
+        <div class="title">Returnal</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹2,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-6" data-title="Resident Evil Village" data-price="1799" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.QfKKAwKjwqyXhoAASIqALAHaD4?w=223&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Resident Evil Village">
+      <div class="card-body">
+        <div class="title">Resident Evil Village</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹1,799</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-9" data-title="Hogwarts Legacy (PS5)" data-price="3499" data-platform="PS5">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.B94vIGZUcykecuTH2KuifAHaEK?w=215&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Hogwarts Legacy">
+      <div class="card-body">
+        <div class="title">Hogwarts Legacy</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹3,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+    <article class="card fade-in" data-id="ps5-10" data-title="Elden Ring (PS5)" data-price="2699" data-platform="PS5">
+      <img class="thumb" src="https://cdn.wccftech.com/wp-content/uploads/2021/06/ER_KEY-ART-scaled-e1623411764381-2048x1052.jpg" alt="Elden Ring">
+      <div class="card-body">
+        <div class="title">Elden Ring</div>
+        <div class="meta"><div class="tag">PS5</div><div class="price">₹2,699</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ====== XBOX (10 games) ====== -->
+<section id="xbox">
+  <div class="section-title fade-in"><h3>Xbox — Top Picks</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="grid" id="xbox-grid">
+    <article class="card fade-in" data-id="xbox-1" data-title="Forza Horizon 5" data-price="3499" data-platform="Xbox">
+      <img class="thumb" src="https://th.bing.com/th/id/OIP.l45j8TWFWPpd4OMrwAs1AgHaLH?w=121&h=182&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Forza Horizon 5">
+      <div class="card-body"><div class="title">Forza Horizon 5</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹3,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="xbox-3" data-title="Sea of Thieves" data-price="1499" data-platform="Xbox">
+      <img class="thumb" src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/02/Sea-of-Thieves-2023-6.jpg" alt="Sea of Thieves">
+      <div class="card-body"><div class="title">Sea of Thieves</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹1,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="xbox-4" data-title="Forza Motorsport" data-price="2999" data-platform="Xbox">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.uImJzHh1vvLwEA2NpubJxQHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Forza Motorsport">
+      <div class="card-body"><div class="title">Forza Motorsport</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹2,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="xbox-5" data-title="Gears 5" data-price="1799" data-platform="Xbox">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.-Ph3MqbbOFiv4MrHaA47bAHaEK?w=244&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Gears 5">
+      <div class="card-body"><div class="title">Gears 5</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹1,799</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="xbox-6" data-title="Psychonauts 2" data-price="1299" data-platform="Xbox">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.IvbpGluSJq5oZe5lge_hggAAAA?w=176&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Psychonauts 2">
+      <div class="card-body"><div class="title">Psychonauts 2</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹1,299</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="xbox-7" data-title="The Outer Worlds" data-price="999" data-platform="Xbox">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.z5dPKQiK9KhwlwoJNxpASgHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="The Outer Worlds">
+      <div class="card-body"><div class="title">The Outer Worlds</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="xbox-8" data-title="FIFA (EA Sports FC) 24" data-price="3799" data-platform="Xbox">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.L7lO59e6y0x7y4bvVwctAwHaEK?w=259&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="FC24">
+      <div class="card-body"><div class="title">EA Sports FC 24</div><div class="meta"><div class="tag">Xbox</div><div class="price">₹3,799</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ====== PS4 (10 games) ====== -->
+<section id="ps4">
+  <div class="section-title fade-in"><h3>PS4 — Classics</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="grid" id="ps4-grid">
+    <article class="card fade-in" data-id="ps4-1" data-title="The Last of Us Part II" data-price="2499" data-platform="PS4">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.cOfhxi3t6dCdx2VSXIH6fQHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="TLOU2">
+      <div class="card-body"><div class="title">The Last of Us Part II</div><div class="meta"><div class="tag">PS4</div><div class="price">₹2,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-2" data-title="Uncharted 4: A Thief's End" data-price="1499" data-platform="PS4">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.mYXlQNLowBYo8e-9Xul3fgHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Uncharted 4">
+      <div class="card-body"><div class="title">Uncharted 4</div><div class="meta"><div class="tag">PS4</div><div class="price">₹1,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-3" data-title="Red Dead Redemption 2" data-price="1999" data-platform="PS4">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.tn5BjTEWASQkBA8QtBVDrgHaEK?w=244&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="RDR2">
+      <div class="card-body"><div class="title">Red Dead Redemption 2</div><div class="meta"><div class="tag">PS4</div><div class="price">₹1,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-4" data-title="Persona 5 Royal" data-price="2199" data-platform="PS4">
+      <img class="thumb" src="https://th.bing.com/th/id/OIP.oyMyGEPjwzeegHwOawhOCAHaLH?w=117&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Persona 5 Royal">
+      <div class="card-body"><div class="title">Persona 5 Royal</div><div class="meta"><div class="tag">PS4</div><div class="price">₹2,199</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-5" data-title="Ghost of Tsushima" data-price="1799" data-platform="PS4">
+      <img class="thumb" src="https://th.bing.com/th/id/OIP.ux5xqR9DRCU2JTZq_uHA6gHaLH?w=115&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Ghost of Tsushima">
+      <div class="card-body"><div class="title">Ghost of Tsushima</div><div class="meta"><div class="tag">PS4</div><div class="price">₹1,799</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-6" data-title="Persona 5" data-price="1299" data-platform="PS4">
+      <img class="thumb" src="https://th.bing.com/th/id/OIP.xF_PJoau2X-LE3U9JbPzCwHaEK?w=295&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Persona 5">
+      <div class="card-body"><div class="title">Persona 5</div><div class="meta"><div class="tag">PS4</div><div class="price">₹1,299</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-7" data-title="Days Gone" data-price="999" data-platform="PS4">
+      <img class="thumb" src="https://th.bing.com/th/id/OIP.hKo0VavQyYN4VOqm_6qRKgHaEP?w=233&h=150&c=6&o=7&dpr=1.3&pid=1.7&rm=3" alt="Days Gone">
+      <div class="card-body"><div class="title">Days Gone</div><div class="meta"><div class="tag">PS4</div><div class="price">₹999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="ps4-10" data-title="Mortal Kombat 11" data-price="999" data-platform="PS4">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.V8Mcd1XTQ8wtC6F94Rao3QHaEK?w=229&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Mortal Kombat 11">
+      <div class="card-body"><div class="title">Mortal Kombat 11</div><div class="meta"><div class="tag">PS4</div><div class="price">₹999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ====== NINTENDO SWITCH (10 games) ====== -->
+<section id="switch">
+  <div class="section-title fade-in"><h3>Nintendo Switch — Favorites</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="grid" id="switch-grid">
+    <article class="card fade-in" data-id="sw-1" data-title="The Legend of Zelda: Breath of the Wild" data-price="3999" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.CRt7A-hTJZ_1MXNJGVwDXAHaHa?w=176&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Zelda BotW">
+      <div class="card-body"><div class="title">Zelda: Breath of the Wild</div><div class="meta"><div class="tag">Switch</div><div class="price">₹3,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-2" data-title="Animal Crossing: New Horizons" data-price="2499" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.q91Yq2O0L-D_3IBzr79sCgHaHa?w=176&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Animal Crossing">
+      <div class="card-body"><div class="title">Animal Crossing: New Horizons</div><div class="meta"><div class="tag">Switch</div><div class="price">₹2,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-3" data-title="Mario Kart 8 Deluxe" data-price="2499" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.4ODezfHYzcfxyaWi0V7FWgHaHa?w=181&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Mario Kart 8">
+      <div class="card-body"><div class="title">Mario Kart 8 Deluxe</div><div class="meta"><div class="tag">Switch</div><div class="price">₹2,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-4" data-title="Super Mario Odyssey" data-price="2999" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.4F1LYUAmXDyHs7DpltGYVQHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Super Mario Odyssey">
+      <div class="card-body"><div class="title">Super Mario Odyssey</div><div class="meta"><div class="tag">Switch</div><div class="price">₹2,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-5" data-title="Splatoon 3" data-price="1999" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.dKwN3ZeHpKG3ZWl8lGY9wwHaEK?w=229&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Splatoon 3">
+      <div class="card-body"><div class="title">Splatoon 3</div><div class="meta"><div class="tag">Switch</div><div class="price">₹1,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-6" data-title="Fire Emblem: Three Houses" data-price="2499" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.aVpwS2j2MZS4DyQwyHjy5QHaEy?w=236&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Fire Emblem">
+      <div class="card-body"><div class="title">Fire Emblem: Three Houses</div><div class="meta"><div class="tag">Switch</div><div class="price">₹2,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-7" data-title="The Legend of Zelda: Tears of the Kingdom" data-price="4199" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.jQKnoKxugd_cS8H2oAKcbAHaEK?w=230&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Zelda Tears">
+      <div class="card-body"><div class="title">Zelda: Tears of the Kingdom</div><div class="meta"><div class="tag">Switch</div><div class="price">₹4,199</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="sw-9" data-title="Pokemon Scarlet & Violet" data-price="3999" data-platform="Switch">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.ZzjoXc5k66I2mtyjfbQhCgHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Pokemon SV">
+      <div class="card-body"><div class="title">Pokemon Scarlet & Violet</div><div class="meta"><div class="tag">Switch</div><div class="price">₹3,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ====== PC (10 games) ====== -->
+<section id="pc">
+  <div class="section-title fade-in"><h3>PC — Top Digital Titles</h3><div style="margin-left:auto;color:var(--muted)">10 games</div></div>
+  <div class="grid" id="pc-grid">
+    <article class="card fade-in" data-id="pc-1" data-title="Cyberpunk 2077" data-price="1999" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.KUD3FJRyhQDeR_ZC6exy_AHaEK?w=229&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Cyberpunk">
+      <div class="card-body"><div class="title">Cyberpunk 2077</div><div class="meta"><div class="tag">PC</div><div class="price">₹1,999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-2" data-title="Red Dead Redemption 2 (PC)" data-price="2499" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.rKZgNKV3eJpvNRvjlcN-LwHaEK?w=274&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="RDR2 PC">
+      <div class="card-body"><div class="title">Red Dead Redemption 2</div><div class="meta"><div class="tag">PC</div><div class="price">₹2,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-3" data-title="Baldur's Gate 3" data-price="3499" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.-fVcaoBwOlQowwbrx2_fSgHaHa?w=165&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="BG3">
+      <div class="card-body"><div class="title">Baldur's Gate 3</div><div class="meta"><div class="tag">PC</div><div class="price">₹3,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-4" data-title="DOOM Eternal" data-price="1499" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.pdYwlzs7i2EYNWZqpTtWTgHaEK?w=240&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Doom Eternal">
+      <div class="card-body"><div class="title">DOOM Eternal</div><div class="meta"><div class="tag">PC</div><div class="price">₹1,499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-5" data-title="Valheim" data-price="799" data-platform="PC">
+      <img class="thumb" src="https://wallpapers.com/images/hd/valheim-game-winter-poster-vn5bcejvntr4h0my.jpg" alt="Valheim">
+      <div class="card-body"><div class="title">Valheim</div><div class="meta"><div class="tag">PC</div><div class="price">₹799</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-6" data-title="Factorio" data-price="699" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.taLHhpHgnLWzVjHM1mzuCwHaDd?w=302&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Factorio">
+      <div class="card-body"><div class="title">Factorio</div><div class="meta"><div class="tag">PC</div><div class="price">₹699</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-7" data-title="Stardew Valley" data-price="499" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.N_ClA8DFBf78Db__SB7dYgHaEK?w=282&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Stardew Valley">
+      <div class="card-body"><div class="title">Stardew Valley</div><div class="meta"><div class="tag">PC</div><div class="price">₹499</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+    <article class="card fade-in" data-id="pc-8" data-title="Disco Elysium" data-price="999" data-platform="PC">
+      <img class="thumb" src="https://www.bing.com/th/id/OIP.FZ57GVhync2N6CbbbDIP2wHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Disco Elysium">
+      <div class="card-body"><div class="title">Disco Elysium</div><div class="meta"><div class="tag">PC</div><div class="price">₹999</div></div>
+        <div class="card-actions"><button class="small-btn" onclick="quickView(this)">Details</button><button class="small-btn buy" onclick="addToCartFromCard(this)">Add to cart</button></div></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== FEEDBACK & CONTACT ===== -->
+<section id="feedback">
+  <div class="section-title fade-in"><h3>Feedback & Contact</h3><div style="margin-left:auto;color:var(--muted)">We love your feedback</div></div>
+
+  <div class="feedback">
+    <form id="feedbackForm" onsubmit="return handleFeedback(event)">
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" type="text" placeholder="John Doe" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="platform">Platform (optional)</label>
+          <select id="platform">
+            <option value="">Any</option>
+            <option>PS5</option>
+            <option>PS4</option>
+            <option>Xbox</option>
+            <option>Switch</option>
+            <option>PC</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rating">Rating</label>
+          <select id="rating" required>
+            <option value="">Select</option>
+            <option>5 - Excellent</option>
+            <option>4 - Good</option>
+            <option>3 - Okay</option>
+            <option>2 - Poor</option>
+            <option>1 - Bad</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px">
+        <label for="message">Your message</label>
+        <textarea id="message" placeholder="Tell us about your experience..." required></textarea>
+      </div>
+
+      <div class="submit-row">
+        <button type="reset" class="small-btn">Reset</button>
+        <button type="submit" class="btn">Send feedback</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  &copy; <span id="year">2025</span> Console Gaming Hub — Demo storefront. For production integrate payment & license delivery systems.
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-head">
+    <div><strong>Your Cart</strong><div style="font-size:12px;color:var(--muted)">Instant code delivery for digital purchases</div></div>
+    <div><button class="small-btn" onclick="closeCart()">Close</button></div>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-summary" id="cartSummary">
+    <div style="display:flex;justify-content:space-between"><div style="color:var(--muted)">Subtotal</div><div id="cartSubtotal">₹0</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px"><div style="color:var(--muted)">GST (18%)</div><div id="cartGST">₹0</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;font-weight:700"><div>Total</div><div id="cartTotal">₹0</div></div>
+
+    <div class="checkout">
+      <button class="small-btn" onclick="clearCart()">Clear</button>
+      <button class="btn" onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple cart system (no backend) stored in localStorage
+  const cartKey = 'cgh_cart_v1';
+  let cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
+
+  // helper to format INR
+  function formatINR(num){
+    return '₹' + (Number(num)).toLocaleString('en-IN', {maximumFractionDigits:0});
+  }
+
+  // update cart UI
+  function updateCartUI(){
+    const count = cart.reduce((s,i)=>s+i.qty,0);
+    document.getElementById('cartCount').textContent = count;
+    // populate drawer
+    const itemsDiv = document.getElementById('cartItems');
+    itemsDiv.innerHTML = '';
+    cart.forEach(item=>{
+      const el = document.createElement('div');
+      el.className = 'cart-item';
+      el.innerHTML = `
+        <img src="${escapeHtml(item.img||'')}" alt="${escapeHtml(item.title)}">
+        <div class="ci-body">
+          <div style="font-weight:600">${escapeHtml(item.title)}</div>
+          <div style="font-size:13px;color:var(--muted)">${escapeHtml(item.platform)} • ${formatINR(item.price)}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+          <div class="qty-controls">
+            <button onclick="changeQty('${item.id}', -1)">−</button>
+            <div style="padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02)">${item.qty}</div>
+            <button onclick="changeQty('${item.id}', 1)">+</button>
+          </div>
+          <button class="small-btn" style="margin-top:6px" onclick="removeFromCart('${item.id}')">Remove</button>
+        </div>
+      `;
+      itemsDiv.appendChild(el);
+    });
+
+    const subtotal = cart.reduce((s,i)=>s + i.price * i.qty, 0);
+    const gst = Math.round(subtotal * 0.18);
+    const total = subtotal + gst;
+    document.getElementById('cartSubtotal').textContent = formatINR(subtotal);
+    document.getElementById('cartGST').textContent = formatINR(gst);
+    document.getElementById('cartTotal').textContent = formatINR(total);
+
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+  }
+
+  function escapeHtml(s){ return (s||'').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+  // add to cart from a card button (button inside card): find closest .card
+  function addToCartFromCard(btn){
+    const card = btn.closest('.card');
+    addCardToCart(card);
+  }
+  function addCardToCart(card){
+    const id = card.getAttribute('data-id');
+    const title = card.getAttribute('data-title');
+    const price = parseInt(card.getAttribute('data-price')) || 0;
+    const platform = card.getAttribute('data-platform') || '';
+    const img = card.querySelector('.thumb')?.src || '';
+    addToCart({id,title,price,platform,img});
+  }
+  function addToCart(item){
+    const found = cart.find(c=>c.id===item.id);
+    if(found){ found.qty += 1; }
+    else{ cart.push({...item, qty:1}); }
+    updateCartUI();
+    openCart();
+  }
+
+  function changeQty(id, delta){
+    const found = cart.find(c=>c.id===id);
+    if(!found) return;
+    found.qty += delta;
+    if(found.qty <= 0) cart = cart.filter(c=>c.id!==id);
+    updateCartUI();
+  }
+
+  function removeFromCart(id){
+    cart = cart.filter(c=>c.id!==id);
+    updateCartUI();
+  }
+
+  function clearCart(){
+    if(!confirm('Clear your cart?')) return;
+    cart = [];
+    updateCartUI();
+  }
+
+  function checkout(){
+    if(cart.length===0){ alert('Your cart is empty. Add some games first.'); return; }
+    // demo checkout flow
+    alert('Demo checkout — this is a static demo. Implement payment & delivery in production.');
+    // for demo, clear cart
+    cart = [];
+    updateCartUI();
+    closeCart();
+  }
+
+  // cart drawer open/close
+  const cartDrawer = document.getElementById('cartDrawer');
+  function openCart(){ cartDrawer.style.display = 'block'; cartDrawer.setAttribute('aria-hidden','false'); }
+  function closeCart(){ cartDrawer.style.display = 'none'; cartDrawer.setAttribute('aria-hidden','true'); }
+  document.getElementById('cartToggler').addEventListener('click', ()=>{
+    if(cartDrawer.style.display === 'block') closeCart(); else openCart();
+  });
+
+  // quick view stub
+  function quickView(btn){
+    const card = btn.closest('.card');
+    const title = card.getAttribute('data-title');
+    const price = card.getAttribute('data-price');
+    alert(title + '\\nPrice: ₹' + price + '\\nThis is a demo quick view.');
+  }
+
+  function addToCartFromData(id,title,price,platform,img){
+    addToCart({id,title,price,platform,img});
+  }
+
+  // simple scroll
+  function scrollToSection(id){
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  // Feedback form handler
+  function handleFeedback(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const rating = document.getElementById('rating').value;
+    const message = document.getElementById('message').value.trim();
+    if(!name || !email || !rating || !message){ alert('Please fill all required fields.'); return false; }
+    // Demo: show a simple thank you, in prod send to backend
+    alert('Thanks ' + name + '! Your feedback has been received. We will contact you at ' + email + '.');
+    e.target.reset();
+    return false;
+  }
+
+  // Page load: populate cart UI and animate fades
+  document.addEventListener('DOMContentLoaded', ()=>{
+    updateCartUI();
+    document.querySelectorAll('.fade-in').forEach((el, i)=>{
+      setTimeout(()=>el.classList.add('visible'), 120 * i);
+    });
+    // put current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  });
+
+  // Small UI helpers to add/remove quickly from code console (optional)
+  window.addToCartFromData = addToCartFromData;
+  window.clearCart = clearCart;
+  window.removeFromCart = removeFromCart;
+</script>
+</body>
+</html>
